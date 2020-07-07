@@ -1,0 +1,40 @@
+Piping is the connection of the standard output of one command to the standard input of another command. Piping using the pipe character (|) which is accessed by pressing  SHIFT + BACKSLASH (\) on most keyboards. 
+
+Here is how you would pipe together commandOne and commandTwo: 
+==> cmdOne -opts args | cmdTwo -opts args
+
+Notice how both commands can have their own options and command line arguments as usual. This piping can go on for as long as is required with as many commands as is required. 
+
+Taking “Snapshots” of pipeline data using the tee command
+--> Redirecting during a pipeline breaks the pipeline. 
+
+For Eg, cmdOne -opts args > snapshot.txt | cmdTwo -opts args
+	==> this will not work.
+
+
+==> Because redirection is processed by the shell before piping is, snapshot.txt would be created, but this locks up the standard output stream and therefore no data can be passed through the pipeline to commandTwo. 
+
+** redirection breaks pipelines
+
+tee to the rescue
+==> However, the tee command allows us to take a “snapshot” of the data in the pipeline without breaking the pipeline. 
+
+	==> cmdOne -opts args | tee snapshot.txt | cmdTwo -opts args
+
+Here, a snapshot of the data coming out of commandOne is saved in snapshot.txt, but the data is also successfully piped through to commandTwo.
+
+
+Piping to commands that only accept command line arguments by using xargs
+--> Piping connects the standard output of one command to the standard input of another command.
+
+--> But what if the second command doesn’t accept standard input? e.g. the echo command. 
+
+--> The key is to transform the data coming in, into command line arguments.
+
+--> This is possible using the xargs command. 
+
+For Eg, cmdOne -opts args | echo
+	==> this will not work
+But,	cmdOne -opts args | xargs echo
+	==> will work, as xargs will convert data stream into cmd line args
+

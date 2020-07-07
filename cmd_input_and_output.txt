@@ -1,0 +1,35 @@
+		|		|
+std_in(0) ----->|		|-----> std_out(1)
+		|    command	|
+cmd args  ----->|		|-----> std_err(2)
+		|		|
+
+cmd args is not a data stream
+rest are std data stream
+
+Standard Data Streams can be redirected and are identified using their stream number.
+
+Redirection of the standard output of one command to the standard input of another command is known as piping.
+
+Redirecting Standard Output
+--> Standard output is stream number 1. There are 2 methods to redirect standard output. 
+	==> The long form, using the stream number:
+		cmdName -opts args 1 > dest
+	==> Or the short form, with no stream number:
+		cmdName -opts args > dest
+
+
+Redirecting Standard Error: 
+--> Standard error is stream number 2.
+	==> Here is how to redirect standard error 
+		cmdName -opts args 2 > dest
+	==> Standard error can be redirected at the same time as standard output:
+		cmdName -opts args 1 > out_dest 2 > err_dest
+
+Redirecting Standard Input: 
+--> Standard Input is stream number 0. There are 2 methods to redirect standard Input. 
+	==> The long form, using the stream number: 
+		cmdName -opts args 0 < in_src
+	==> Or the short form, with no stream number:
+		cmdName -opts args < in_src
+
