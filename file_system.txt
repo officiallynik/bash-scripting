@@ -1,0 +1,52 @@
+some basic cmds
+==> pwd --> present working directory
+==> cd [<new location>] --> change directory to <new location>
+==> ls [<location>] --> list out the contents of optional <location>
+
+Key Shortcuts when Navigating File System.
+==> ~ --> current user's home directory
+==> . --> the current folder
+==> .. --> parent directory of current folder
+
+
+Wildcards and Regular Expressions 
+--> Wildcards are symbols with specific meanings to the shell. 
+	==> * --> Matches anything, regardless of length. 
+	==> ? --> Matches anything, but for one place only.
+	==> [options] --> Matches any of the options inside for 1 place only. 
+ 
+Regular expressions are patterns that can be used to match text. In Linux, they are used to allow a user to make rather generic expressions about what files they want a command to operate on.
+
+These 3 wildcards are incredibly versatile and will cover an exhaustive amount of your regular expression requirements. 
+
+
+Creating Files and Directories 
+==> touch <file> --> creates a empty file in current folder
+==> mkdir <directory> --> creates a new directory in current folder
+
+Deleting Files and Directories
+==> rm <file> --> remove a file
+==> rm -r <directory> --> remove a directory
+==> rm -i --> removes using a interactive panel
+==> rmdir <empty directory> --> only remove empty directories
+
+
+Editing Files with the Nano Editor
+Nano is a versatile terminal-based text editor. It comes with a built-in toolbar of various commands and all one needs to know in order to use these options are the meaning of 2 special symbols. 
+
+^ --> ctrl key on the keyboard
+M- --> This is the “meta” key on your keyboard. Depending on your keyboard layout this may be the ALT, ESC, CMD key. T
+
+
+The Locate Command
+The locate command searches a database on your file system for the files that match the text (or regular expression) that you provide it as a command line argument. 
+
+If results are found, the locate command will return the absolute path to all matching files. 
+
+For Eg, locate *.txt  -->  will find all files with filenames ending in .txt that are registered in the database
+
+The locate command is fast, but because it relies on a database it can be error prone if the database isn’t kept up to date
+
+==> Locate -S --> Print information about the database file.
+==> sudo updatedb --> Update the database. As the updatedb command is an administrator command, the sudo command is used to run updatedb as the root user (the administrator)
+==> Locate --existing --> Check whether a result actually exists before returning it. 
