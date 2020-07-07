@@ -1,0 +1,33 @@
+Aliases allow you to save your pipelines and commands with easy to remember nicknames so that they can be used later much easier. 
+
+You define aliases in your .bash_aliases file in your home directory. If it does not exist, you need to create it spelled exactly as shown. Note that the preceding period (.) must be included and there should be no file extension (such as .txt, or .pdf). 
+
+Here is how you define an alias in .bash_aliases: 
+==> alias aliasName="THING TO BE ALIASED"
+
+Notice that there are no spaces between the equals sign (=) and the aliasName and the quotes (“). The quotes can be double quote (“) or single quotes (‘).
+
+For Eg, alias calmagic="cal -A 1 -B 1 8 2020"
+With this alias defined in our .bash_aliases file, whenever we run the calmagic command it is as if we ran the cal –A 1 –B 1 8 2020 command.
+
+calmagic is now said to be an alias of “cal –A 1 –B 1 1 8 2020."
+
+** Aliases may contain either one command or an entire pipeline! 
+
+
+Piping to an alias 
+If the first command in an alias accepts standard input, then the alias can be piped to; even if it is an entire pipeline! 
+
+our alias is currently: alias calmagic="cal -A 1 -B 1 8 2020"
+
+cal is the first command in this alias, but cal doesn’t accept standard input.
+==> this would not work, cmdOne opts args | calmagic
+
+However, if we adjust our alias so that it can accept standard input. 
+==> alias calmagic=”xargs cal –A 1 –B 1 128 2020"
+
+now, 'cmdOne -opts args | calmgic' will work.
+
+you can pipe out of an alias as well, if the alias produces standard output.
+==> cmdOne -opts args | calmagic | cmdTwo -opts args
+
